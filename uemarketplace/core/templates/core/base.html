@@ -1,12 +1,14 @@
+{% load static %}
 <!doctype html>
 
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% load static %}
         <script src="{% static 'js/htmx.min.js' %}" defer></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}" defer></script>
         <script src="https://cdn.tailwindcss.com"></script>
+        
         <style>
             body 
             {
@@ -15,7 +17,12 @@
         </style>        
     </head>
 
-    <body>
+    <body hx-boost="true">
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
         <nav>
             <div class="max-w-6xl mx-auto py-2 px-6 xl:px-0 flex items-center justify-between">
                 <div class="menu-left flex items-center space-x-6">
@@ -43,12 +50,6 @@
                 </div>
             </div>
         </nav>
-
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
-
         <footer>
             <div class="max-w-6xl mx-auto py-10 px-6 xl:px-0 md:flex justify-between">
                 <div class="footer-left mb-12 md:mb-0">
