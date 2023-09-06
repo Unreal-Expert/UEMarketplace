@@ -16,6 +16,11 @@
     </head>
 
     <body>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
         <nav>
             <div class="max-w-6xl mx-auto py-2 px-6 xl:px-0 flex items-center justify-between">
                 <div class="menu-left flex items-center space-x-6">
@@ -43,12 +48,6 @@
                 </div>
             </div>
         </nav>
-
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
-
         <footer>
             <div class="max-w-6xl mx-auto py-10 px-6 xl:px-0 md:flex justify-between">
                 <div class="footer-left mb-12 md:mb-0">
