@@ -15,7 +15,11 @@
     <div class="max-w-3xl mx-auto text-center">
         <p class="mb-2 text-3xl lg:text-5xl text-white font-bold bg-black bg-opacity-50 p-3 rounded">Welcome to Unreal Expert</p>
         <p class="mb-10 text-white">Business Marketplace for professional Unreal Engine Code and Consultants</p>
-        <a href="#" class="inline-block px-8 py-4 rounded-xl bg-white text-purple-500 hover:bg-gray-200">Start Here</a>
+        <button class="inline-block px-8 py-4 rounded-xl bg-white text-purple-500 hover:bg-gray-200" 
+            hx-get="{% url 'htmx_rocks'%}"
+            hx-target="closest div"
+            >Start Here</button>        
+
     </div>
 </header>
 

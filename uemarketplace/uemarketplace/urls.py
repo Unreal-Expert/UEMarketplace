@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path
 
 from core.views import frontpage
+from core.views import htmx_rocks
 
 urlpatterns = [
     path('', frontpage, name='frontpage'),
     path('admin/', admin.site.urls),
+    path('templates/core/partials/htmx_rocks.html', htmx_rocks, name='htmx_rocks'),
 ]
