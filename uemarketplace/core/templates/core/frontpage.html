@@ -2,29 +2,144 @@
 {% load static %}
 
 {% block content %}
+<script>
+    let newWebRTC;
+    function handleSendCommands(command) {
+        newWebRTC.emitUIInteraction(command);
+    }
+</script>
+<script type="module">
+    import { WebRTCClient } from "https://unpkg.com/@arcware/webrtc-plugin@latest/index_new.umd.js";
+    newWebRTC = new WebRTCClient({
+        address: "wss://signalling-client.ragnarok.arcware.cloud/",
+        shareId: "1share-9b608875-8841-4c78-961d-f5c3da79e0c8",
+        settings: {
+            /* object with settings */
+        },
+        playOverlay: false,
+        loader: (val) => {
+
+            if (val === false) {
+                const headerElement = document.querySelector('.header-bg');
+                const webRTCContainer = document.getElementById('sizeContainer');
+                const videoContainer = document.getElementById('videoContainer');
+                const buttonsWrapper = document.querySelector('.buttons-wrapper');
+                console.log("The stream is ready and the application is running.");
+
+                // Clear the content of the <header> element
+                headerElement.innerHTML = '';
+
+                // Append the WebRTC client's container to the <header> element
+                headerElement.appendChild(webRTCContainer);
+                // Make the elements visible
+                webRTCContainer.style.display = 'block';
+                videoContainer.style.display = 'block';
+                buttonsWrapper.style.display = 'flex';
+
+            } else {
+                console.log("The application is still loading...");
+            }
+        },
+        applicationResponse: (response) => {
+            /* handle application response */
+            console.log("response", response);
+        },
+        sizeContainer: document.getElementById("sizeContainer"),
+        container: document.getElementById("videoContainer"),
+        videoRef: document.getElementById("videoRef"),
+    });
+</script>
+
 <style>
     .header-bg {
         /* The first image is the centered one, and the second is the cover */
-        background: 
-            url("{% static 'images/Absolute_Reality_v16_Unreal_Engine_style_Logo_with_letters_UE_0.jpg' %}") center/1280px 720px no-repeat,
-            url("{% static 'images/Absolute_Reality_v16_Unreal_Engine_style_Logo_with_letters_UE_0.jpg' %}") center/cover no-repeat;
+        background: url("{% static 'images/Absolute_Reality_v16_Unreal_Engine_style_Logo_with_letters_UE_0.jpg' %}") center/1280px 720px no-repeat,
+        url("{% static 'images/Absolute_Reality_v16_Unreal_Engine_style_Logo_with_letters_UE_0.jpg' %}") center/cover no-repeat;
     }
 </style>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
 
+    #sizeContainer {
+        display: none;
+        /* This will hide the container initially */
+    }
+
+    #videoContainer {
+        display: none;
+        /* This will hide the container initially */
+    }
+
+    #videoRef {
+        display: none;
+        width: 80vw;
+        height: 80vh !important;
+    }
+
+    .buttons-wrapper {
+        display: none;
+        /* display: flex; */
+        position: absolute;
+        z-index: 4;
+        bottom: 0;
+        right: 0;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .button {
+        padding: 7px 15px;
+        border: none;
+        border-radius: 4px;
+        background: rgba(62, 62, 62, 0.75);
+        cursor: pointer;
+        color: #ffffff;
+    }
+</style>
 <header class="px-6 py-10 lg:py-20 header-bg h-[720px]">
     <div class="max-w-3xl mx-auto text-center">
-        <p class="mb-2 text-3xl lg:text-5xl text-white font-bold bg-black bg-opacity-50 p-3 rounded">Welcome to Unreal Expert</p>
+        <p class="mb-2 text-3xl lg:text-5xl text-white font-bold bg-black bg-opacity-50 p-3 rounded">Welcome to Unreal
+            Expert</p>
         <p class="mb-10 text-white">Business Marketplace for professional Unreal Engine Code and Consultants</p>
-        <button class="inline-block px-8 py-4 rounded-xl bg-white text-purple-500 hover:bg-gray-200" 
-            hx-get="{% url 'htmx_rocks'%}"
-            hx-target="closest div"
-            >Start Here</button>        
+        <button class="inline-block px-8 py-4 rounded-xl bg-white text-purple-500 hover:bg-gray-200"
+            hx-get="{% url 'htmx_rocks'%}" hx-target="closest div">Start Here</button>
 
     </div>
 </header>
+<div id="sizeContainer">
+    <div id="videoContainer">
+        <div class="buttons-wrapper">
+            <button class="button" onclick="handleSendCommands({ Plugin: 'Ultra Dynamic Sky' })">
+                Color 1
+            </button>
+            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_02' })">
+                Color 2
+            </button>
+            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_03' })">
+                Color 3
+            </button>
+            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_04' })">
+                Color 4
+            </button>
+            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_05' })">
+                Color 5
+            </button>
+        </div>
+        <video id="videoRef"></video>
+        <audio id="audioRef"></audio>
+    </div>
+</div>
+
+
 
 <div class="max-w-6xl mx-auto py-2 px-6 xl:px-0">
-    <div class="products flex items-center flex-wrap">
+    <div class="products flex items-center flex-wrap" onclick="handleSendCommands({ Plugin: 'Ultra Dynamic Sky' })">
         <div class="w-full md:w-1/3 xl:w-1/4 p-6">
             <a href="#">
                 <img class="rounded-xl hover:shadow-lg">
@@ -34,8 +149,10 @@
                 <a href="#">Ultra Dynamic Sky</a>
 
                 <a href="#" class="text-purple-500 hover:text-purple-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                 </a>
             </div>
@@ -52,26 +169,10 @@
                 <a href="#">Ultra Dynamic Sky</a>
 
                 <a href="#" class="text-purple-500 hover:text-purple-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                </a>
-            </div>
-
-            <p class="pt-1 text-gray-400">$39.99</p>
-        </div>
-        
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6">
-            <a href="#">
-                <img class="rounded-xl hover:shadow-lg">
-            </a>
-
-            <div class="pt-3 flex items-center justify-between text-white">
-                <a href="#">Ultra Dynamic Sky</a>
-
-                <a href="#" class="text-purple-500 hover:text-purple-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                 </a>
             </div>
@@ -88,8 +189,10 @@
                 <a href="#">Ultra Dynamic Sky</a>
 
                 <a href="#" class="text-purple-500 hover:text-purple-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                 </a>
             </div>
@@ -106,8 +209,30 @@
                 <a href="#">Ultra Dynamic Sky</a>
 
                 <a href="#" class="text-purple-500 hover:text-purple-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                </a>
+            </div>
+
+            <p class="pt-1 text-gray-400">$39.99</p>
+        </div>
+
+        <div class="w-full md:w-1/3 xl:w-1/4 p-6">
+            <a href="#">
+                <img class="rounded-xl hover:shadow-lg">
+            </a>
+
+            <div class="pt-3 flex items-center justify-between text-white">
+                <a href="#">Ultra Dynamic Sky</a>
+
+                <a href="#" class="text-purple-500 hover:text-purple-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                 </a>
             </div>
