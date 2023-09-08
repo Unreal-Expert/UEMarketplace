@@ -3,22 +3,16 @@
         {
             "name": "uemarketplace-container",
             "image": "886217612705.dkr.ecr.us-east-2.amazonaws.com/uemarketplace-ecr-repo:latest",
-            "cpu": 0,
+            "cpu": 1024,
+            "memory": 3072,
             "portMappings": [
                 {
                     "name": "uemarketplace-container-80-tcp",
                     "containerPort": 80,
                     "hostPort": 80,
-                    "protocol": "tcp",
-                    "appProtocol": "http"
+                    "protocol": "tcp"
                 }
             ],
-            "essential": true,
-            "environment": [],
-            "environmentFiles": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
