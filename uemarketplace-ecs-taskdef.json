@@ -42,7 +42,7 @@
   "networkConfiguration": {
     "awsvpcConfiguration": {
       "assignPublicIp": "ENABLED",
-      "publicIp": "18.223.181.86"  // Replace with your Elastic IP
+      "publicIp": "18.223.181.86"
     }
   },
   "runtimePlatform": {
