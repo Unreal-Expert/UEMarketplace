@@ -7,9 +7,9 @@
             "memory": 3072,
             "portMappings": [
                 {
-                    "name": "uemarketplace-container-80-tcp",
-                    "containerPort": 80,
-                    "hostPort": 80,
+                    "name": "uemarketplace-container-8000-tcp",
+                    "containerPort": 8000,
+                    "hostPort": 8000,
                     "protocol": "tcp"
                 }
             ],
@@ -32,40 +32,8 @@
     "taskRoleArn": "arn:aws:iam::886217612705:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::886217612705:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 6,
     "volumes": [],
-    "status": "ACTIVE",
-    "requiresAttributes": [
-        {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-        },
-        {
-            "name": "ecs.capability.execution-role-awslogs"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.task-iam-role"
-        },
-        {
-            "name": "ecs.capability.execution-role-ecr-pull"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        },
-        {
-            "name": "ecs.capability.task-eni"
-        }
-    ],
     "placementConstraints": [],
-    "compatibilities": [
-        "EC2",
-        "FARGATE"
-    ],
     "requiresCompatibilities": [
         "FARGATE"
     ],
