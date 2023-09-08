@@ -32,22 +32,16 @@
   "taskRoleArn": "arn:aws:iam::886217612705:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::886217612705:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "volumes": [],
-  "placementConstraints": [],
-  "requiresCompatibilities": [
-    "FARGATE"
-  ],
+  "requiresCompatibilities": ["FARGATE"],
   "cpu": "1024",
   "memory": "3072",
+  "tags": [],
   "networkConfiguration": {
     "awsvpcConfiguration": {
       "assignPublicIp": "ENABLED",
       "publicIp": "18.223.181.86"
     }
   },
-  "runtimePlatform": {
-    "cpuArchitecture": "X86_64",
-    "operatingSystemFamily": "LINUX"
-  },
-  "tags": []
+  "cpuArchitecture": "X86_64",
+  "operatingSystemFamily": "LINUX"
 }
