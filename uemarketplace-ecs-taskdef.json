@@ -13,23 +13,67 @@
                     "protocol": "tcp"
                 }
             ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "/ecs/uemarketplace-ecs-taskdef",
                     "awslogs-region": "us-east-2",
                     "awslogs-stream-prefix": "ecs"
-                }
+                },
+                "secretOptions": []
             }
         }
+    ],
+    "family": "uemarketplace-ecs-taskdef",
+    "taskRoleArn": "arn:aws:iam::886217612705:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::886217612705:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 6,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
     ],
     "requiresCompatibilities": [
         "FARGATE"
     ],
     "cpu": "1024",
     "memory": "3072",
-    "family": "uemarketplace-ecs-taskdef",
-    "networkMode": "awsvpc",
-    "executionRoleArn": "arn:aws:iam::886217612705:role/ecsTaskExecutionRole",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
     "tags": []
 }
