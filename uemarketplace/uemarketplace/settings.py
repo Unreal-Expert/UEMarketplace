@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-hko_*^s1zg*e@%4ohx0dy)83!k4uu-^6-rx6#_7_5a&c#u162x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Make sure this is changed before production!
+# Make sure this is changed before production
 ALLOWED_HOSTS = ['*']
 
 
@@ -120,10 +120,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # https://django-htmx.readthedocs.io/en/latest/installation.html
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"  # This is where `collectstatic` will copy static files to
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
