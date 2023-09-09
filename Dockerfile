@@ -38,6 +38,7 @@ COPY nginx.conf /etc/nginx/sites-available/
 # Remove default Nginx configuration and enable our configuration
 RUN rm /etc/nginx/sites-enabled/default && ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled
 
+WORKDIR /
 # Copy start script to the root of the container
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
@@ -47,3 +48,4 @@ EXPOSE 80
 
 # Set the start script as the command to run when the container starts
 CMD ["/start.sh"]
+
