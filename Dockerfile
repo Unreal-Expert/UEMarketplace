@@ -16,8 +16,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . /app/
 
-# Expose port 8000 for the Django application (adjust as needed)
-EXPOSE 8000
+# Expose port 80 for the Django application
+EXPOSE 80
 
 # Define the command to run when the container starts
-CMD ["python", "uemarketplace/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "uemarketplace/manage.py", "runserver", "0.0.0.0:80"]
