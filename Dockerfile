@@ -28,7 +28,7 @@ WORKDIR /uemarketplace
 # Install Nginx
 RUN apt-get update && apt-get install -y nginx && apt-get clean
 
-# Copy static files and Django app from builder stage
+# Copy static files and Django app from builder stage using absolute paths
 COPY --from=builder /uemarketplace/staticfiles /uemarketplace/staticfiles
 COPY --from=builder /uemarketplace /uemarketplace
 
@@ -38,14 +38,18 @@ COPY nginx.conf /etc/nginx/sites-available/
 # Remove default Nginx configuration and enable our configuration
 RUN rm /etc/nginx/sites-enabled/default && ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled
 
+# Change to root directory
 WORKDIR /
-# Copy start script to the root of the container
+
+# Copy start script to the root of the container and ensure it's executable
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
+
+# Debugging step to list contents and display the start.sh script
+RUN ls -l / && cat /start.sh
 
 # Expose port 80 for the Django application
 EXPOSE 80
 
 # Set the start script as the command to run when the container starts
 CMD ["/start.sh"]
-
