@@ -25,13 +25,25 @@ FROM python:3.11
 # Set the working directory in the container
 WORKDIR /uemarketplace
 
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx && apt-get clean
+
 # Copy static files and Django app from builder stage
 COPY --from=builder /uemarketplace/staticfiles /uemarketplace/staticfiles
 COPY --from=builder /uemarketplace /uemarketplace
 
+# Copy Nginx configuration
+COPY nginx.conf /etc/nginx/sites-available/
+
+# Remove default Nginx configuration and enable our configuration
+RUN rm /etc/nginx/sites-enabled/default && ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled
+
+# Copy start script
+COPY start.sh /uemarketplace/
+RUN chmod +x /uemarketplace/start.sh
+
 # Expose port 80 for the Django application
 EXPOSE 80
 
-# Define the command to run when the container starts
-CMD ["python", "uemarketplace/manage.py", "runserver", "0.0.0.0:8000"]
-
+# Set the start script as the command to run when the container starts
+CMD ["/uemarketplace/start.sh"]
