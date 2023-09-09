@@ -1,22 +1,37 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11 AS builder
+FROM python:3.11 as builder
 
+# Set environment variables for Python
 ENV PYTHONUNBUFFERED 1
+
+# Set the working directory in the container
 WORKDIR /uemarketplace
 
-COPY requirements.txt /uemarketplace/
+# Copy the requirements file into the container
+COPY requirements.txt .
+
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
-COPY . /uemarketplace/
 
-# Nginx Stage
-FROM nginx:alpine
+# Copy the rest of the application code into the container
+COPY . .
 
-# Copy Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Run collectstatic command
+RUN python uemarketplace/manage.py collectstatic --noinput
+
+# Start the second stage of the build to produce the final image
+FROM python:3.11
+
+# Set the working directory in the container
+WORKDIR /uemarketplace
 
 # Copy static files and Django app from builder stage
 COPY --from=builder /uemarketplace/static /uemarketplace/static
 COPY --from=builder /uemarketplace /uemarketplace
 
-# Start Nginx and Django using a script
-CMD ["sh", "-c", "nginx && python /uemarketplace/manage.py runserver 0.0.0.0:8000"]
+# Expose port 80 for the Django application
+EXPOSE 80
+
+# Define the command to run when the container starts
+CMD ["python", "uemarketplace/manage.py", "runserver", "0.0.0.0:8000"]
+
