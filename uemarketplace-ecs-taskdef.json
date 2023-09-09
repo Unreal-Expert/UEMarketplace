@@ -38,10 +38,7 @@
   "tags": [],
   "networkConfiguration": {
     "awsvpcConfiguration": {
-      "assignPublicIp": "ENABLED",
-      "publicIp": "18.223.181.86"
+      "assignPublicIp": "ENABLED"
     }
-  },
-  "cpuArchitecture": "X86_64",
-  "operatingSystemFamily": "LINUX"
+  }
 }
