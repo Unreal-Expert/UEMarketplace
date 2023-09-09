@@ -4,26 +4,23 @@ FROM python:3.11 as builder
 # Set environment variables for Python
 ENV PYTHONUNBUFFERED 1
 
-# Set the working directory in the container
-WORKDIR /uemarketplace
+# Copy the Django application code into the builder's /uemarketplace directory
+COPY uemarketplace /uemarketplace
 
-# Copy the requirements file into the container
-COPY requirements.txt .
+# Copy the requirements file into the builder's root directory
+COPY requirements.txt /
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r /requirements.txt
 
-# Copy the rest of the application code into the container
-COPY . .
-
-# Run collectstatic command
-RUN python uemarketplace/manage.py collectstatic --noinput
+# Run collectstatic command in the builder stage
+RUN python /uemarketplace/manage.py collectstatic --noinput
 
 # Start the second stage of the build to produce the final image
 FROM python:3.11
 
-# Set the working directory in the container
-WORKDIR /uemarketplace
+# Copy the Python environment from the builder stage
+COPY --from=builder /usr/local /usr/local
 
 # Install Nginx
 RUN apt-get update && apt-get install -y nginx && apt-get clean
@@ -32,17 +29,14 @@ RUN apt-get update && apt-get install -y nginx && apt-get clean
 COPY --from=builder /uemarketplace/staticfiles /uemarketplace/staticfiles
 COPY --from=builder /uemarketplace /uemarketplace
 
-# Copy Nginx configuration
+# Copy root-level configuration files
 COPY nginx.conf /etc/nginx/sites-available/
+COPY start.sh /
 
 # Remove default Nginx configuration and enable our configuration
 RUN rm /etc/nginx/sites-enabled/default && ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled
 
-# Change to root directory
-WORKDIR /
-
-# Copy start script to the root of the container and ensure it's executable
-COPY start.sh /start.sh
+# Ensure the start script is executable
 RUN chmod +x /start.sh
 
 # Debugging step to list contents and display the start.sh script
@@ -52,4 +46,4 @@ RUN ls -l / && cat /start.sh
 EXPOSE 80
 
 # Set the start script as the command to run when the container starts
-CMD ["/start.sh"]
+CMD ["/bin/sh", "/start.sh"]
