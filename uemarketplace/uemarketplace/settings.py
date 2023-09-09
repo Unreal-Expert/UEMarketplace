@@ -124,7 +124,7 @@ STATIC_URL = '/static/'
 
 # https://django-htmx.readthedocs.io/en/latest/installation.html
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"  # This is where `collectstatic` will copy static files to
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

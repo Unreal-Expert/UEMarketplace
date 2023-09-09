@@ -26,7 +26,7 @@ FROM python:3.11
 WORKDIR /uemarketplace
 
 # Copy static files and Django app from builder stage
-COPY --from=builder /uemarketplace/static /uemarketplace/static
+COPY --from=builder /uemarketplace/staticfiles /uemarketplace/staticfiles
 COPY --from=builder /uemarketplace /uemarketplace
 
 # Expose port 80 for the Django application
