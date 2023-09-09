@@ -7,9 +7,9 @@
       "memory": 3072,
       "portMappings": [
         {
-          "name": "uemarketplace-container-8000-tcp",
+          "name": "uemarketplace-container-80-tcp",
           "containerPort": 8000,
-          "hostPort": 8000,
+          "hostPort": 80,
           "protocol": "tcp"
         }
       ],
