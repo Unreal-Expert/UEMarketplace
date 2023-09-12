@@ -19,9 +19,11 @@ from django.urls import path
 
 from core.views import frontpage
 from core.views import htmx_rocks
+from core.views import pixel_streaming
 
 urlpatterns = [
     path('', frontpage, name='frontpage'),
     path('admin/', admin.site.urls),
     path('templates/core/partials/htmx_rocks.html', htmx_rocks, name='htmx_rocks'),
+    path('templates/core/partials/pixel_streaming.html', pixel_streaming, name='pixel_streaming'),
 ]

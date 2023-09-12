@@ -1,0 +1,73 @@
+<script>
+    let newWebRTC;
+    function handleSendCommands(command) {
+        newWebRTC.emitUIInteraction(command);
+    }
+</script>
+<script type="module">
+    import { WebRTCClient } from "https://unpkg.com/@arcware/webrtc-plugin@latest/index_new.umd.js";
+    newWebRTC = new WebRTCClient({
+        address: "wss://signalling-client.ragnarok.arcware.cloud/",
+        shareId: "share-e1a172eb-810f-4686-a172-f1cadeb7b93c",
+        settings: {
+            /* object with settings */
+        },
+        playOverlay: false,
+        loader: (val) => {
+
+            if (val === false) {
+                const headerElement = document.querySelector('.header-bg');
+                const webRTCContainer = document.getElementById('sizeContainer');
+                const videoContainer = document.getElementById('videoContainer');
+                const buttonsWrapper = document.querySelector('.buttons-wrapper');
+                console.log("The stream is ready and the application is running.");
+
+                // Clear the content of the <header> element
+                headerElement.innerHTML = '';
+
+                // Append the WebRTC client's container to the <header> element
+                headerElement.appendChild(webRTCContainer);
+                // Make the elements visible
+                webRTCContainer.style.display = 'block';
+                videoContainer.style.display = 'block';
+                buttonsWrapper.style.display = 'flex';
+                
+
+            } else {
+                console.log("The application is still loading...");
+            }
+        },
+        applicationResponse: (response) => {
+            /* handle application response */
+            console.log("response", response);
+        },
+        sizeContainer: document.getElementById("sizeContainer"),
+        container: document.getElementById("videoContainer"),
+        videoRef: document.getElementById("videoRef"),
+        audioRef: document.getElementById("audioRef"),
+    });
+</script>
+
+<div id="sizeContainer">
+    <div id="videoContainer">
+        <div class="buttons-wrapper">
+            <button class="button" onclick="handleSendCommands({ map: '/Game/UltraDynamicSky/Maps/DemoMap' })">
+                Ultra Dynamic Sky
+            </button>
+            <button class="button" onclick="handleSendCommands({ map: '/Game/Maps/Arcware_Template_Main' })">
+                Arcware
+            </button>
+            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_03' })">
+                Color 3
+            </button>
+            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_04' })">
+                Color 4
+            </button>
+            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_05' })">
+                Color 5
+            </button>
+        </div>
+        <video id="videoRef"></video>
+        <audio id="audioRef"></audio>
+    </div>
+</div>
