@@ -30,8 +30,6 @@ on:
   push:
     branches:
       - github-ci-cd-setup
-  pull_request:
-    branches:
       - main
 
 env:
