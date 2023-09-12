@@ -6,3 +6,6 @@ def frontpage(request):
 
 def htmx_rocks(request):
     return render(request, 'core/partials/htmx_rocks.html')  
+
+def pixel_streaming(request):
+    return render(request, 'core/partials/pixel_streaming.html')  
