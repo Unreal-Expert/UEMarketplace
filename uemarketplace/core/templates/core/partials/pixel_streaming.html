@@ -20,6 +20,7 @@
                 const webRTCContainer = document.getElementById('sizeContainer');
                 const videoContainer = document.getElementById('videoContainer');
                 const buttonsWrapper = document.querySelector('.buttons-wrapper');
+                audioRef: document.getElementById("audioRef");
                 console.log("The stream is ready and the application is running.");
 
                 // Clear the content of the <header> element
@@ -31,8 +32,10 @@
                 webRTCContainer.style.display = 'block';
                 videoContainer.style.display = 'block';
                 buttonsWrapper.style.display = 'flex';
-                
 
+                if (document.getElementById('audioRef').paused === true) {
+                    document.getElementById('audioRef').play();
+                }
             } else {
                 console.log("The application is still loading...");
             }
@@ -46,6 +49,16 @@
         videoRef: document.getElementById("videoRef"),
         audioRef: document.getElementById("audioRef"),
     });
+</script>
+<script>
+    function handleMute() {
+        if (document.getElementById('audioRef').paused === true) {
+            document.getElementById('audioRef').play();
+        }
+        else if (document.getElementById('audioRef').paused === false) {
+            document.getElementById('audioRef').pause();
+        }
+    }
 </script>
 
 <div id="sizeContainer">
@@ -63,8 +76,8 @@
             <button class="button" onclick="handleSendCommands({ body_color: 'body_color_04' })">
                 Color 4
             </button>
-            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_05' })">
-                Color 5
+            <button class="button" onclick="handleMute();">
+                Mute/Unmute
             </button>
         </div>
         <video id="videoRef"></video>
