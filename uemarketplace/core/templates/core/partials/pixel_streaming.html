@@ -5,7 +5,8 @@
     }
 </script>
 <script type="module">
-    import { WebRTCClient } from "https://unpkg.com/@arcware/webrtc-plugin@latest/index_new.umd.js";
+    import { WebRTCClient, events } from "https://unpkg.com/@arcware/webrtc-plugin@latest/index_new.umd.js";
+
     newWebRTC = new WebRTCClient({
         address: "wss://signalling-client.ragnarok.arcware.cloud/",
         shareId: "share-e1a172eb-810f-4686-a172-f1cadeb7b93c",
@@ -20,6 +21,7 @@
                 const webRTCContainer = document.getElementById('sizeContainer');
                 const videoContainer = document.getElementById('videoContainer');
                 const buttonsWrapper = document.querySelector('.buttons-wrapper');
+                audioRef: document.getElementById("audioRef");
                 console.log("The stream is ready and the application is running.");
 
                 // Clear the content of the <header> element
@@ -31,10 +33,12 @@
                 webRTCContainer.style.display = 'block';
                 videoContainer.style.display = 'block';
                 buttonsWrapper.style.display = 'flex';
-                
 
+                if (document.getElementById('audioRef').paused === true) {
+                    document.getElementById('audioRef').play();
+                }
             } else {
-                console.log("The application is still loading...");
+                console.log("The application is still loading... Response:", val);
             }
         },
         applicationResponse: (response) => {
@@ -46,25 +50,54 @@
         videoRef: document.getElementById("videoRef"),
         audioRef: document.getElementById("audioRef"),
     });
+
+    // List all the event types you want to listen to
+    const allEventTypes = [
+        events.EventTypes.AFK_Warn,
+        events.EventTypes.AFK_Error,
+        events.EventTypes.AFK_Action,
+        events.EventTypes.AFK_Abort
+    ];
+
+    // Add event listeners for each event type
+    allEventTypes.forEach(eventType => {
+        newWebRTC.events.addListener(eventType, (event) => {
+            let eventName = Object.keys(events.EventTypes).find(key => events.EventTypes[key] === eventType);
+            console.log(`Event triggered: ${eventName}`, event, Object.getOwnPropertyNames(event));
+        });
+    });
+
+
+
+</script>
+<script>
+    function handleMute() {
+        if (document.getElementById('audioRef').paused === true) {
+            document.getElementById('audioRef').play();
+        }
+        else if (document.getElementById('audioRef').paused === false) {
+            document.getElementById('audioRef').pause();
+        }
+    }
 </script>
 
 <div id="sizeContainer">
     <div id="videoContainer">
         <div class="buttons-wrapper">
             <button class="button" onclick="handleSendCommands({ map: '/Game/UltraDynamicSky/Maps/DemoMap' })">
-                Ultra Dynamic Sky
+                Marketplace Plugin
             </button>
             <button class="button" onclick="handleSendCommands({ map: '/Game/Maps/Arcware_Template_Main' })">
                 Arcware
             </button>
-            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_03' })">
-                Color 3
+            <button class="button" onclick="handleSendCommands({ body_color: '/Game/Maps/OWLDemo' })">
+                OWL Streaming
             </button>
             <button class="button" onclick="handleSendCommands({ body_color: 'body_color_04' })">
                 Color 4
             </button>
-            <button class="button" onclick="handleSendCommands({ body_color: 'body_color_05' })">
-                Color 5
+            <button class="button" onclick="handleMute();">
+                Mute/Unmute
             </button>
         </div>
         <video id="videoRef"></video>
