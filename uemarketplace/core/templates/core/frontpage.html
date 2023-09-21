@@ -5,10 +5,10 @@
 
 <style>
     .header-bg {
-        /* The first image is the centered one, and the second is the cover */
-        background: url("{% static 'images/Absolute_Reality_v16_Unreal_Engine_style_Logo_with_letters_UE_0.jpg' %}") center/1280px 720px no-repeat,
-        url("{% static 'images/Absolute_Reality_v16_Unreal_Engine_style_Logo_with_letters_UE_0.jpg' %}") center/cover no-repeat;
+        /* Only keep the cover background */
+        background: url("{% static 'images/Absolute_Reality_v16_Unreal_Engine_style_Logo_with_letters_UE_0.jpg' %}") center/cover no-repeat;
     }
+
 
     .carousel img {
         width: 250px;
@@ -82,126 +82,126 @@
             Expert</p>
         <p class="mb-10 text-white">Business Marketplace for professional Unreal Engine Code and Consultants</p>
         <button class="inline-block px-8 py-4 rounded-xl bg-white text-purple-500 hover:bg-gray-200"
-            hx-get="{% url 'pixel_streaming'%}" hx-target="closest div">Start Unreal Engine</button>
+            hx-get="{% url 'pixel_streaming'%}" hx-target="closest div">Start Unreal Engine <br> Pixel
+            Streaming</button>
 
     </div>
 </header>
-    
-    <div class="products flex justify-center items-center flex-wrap">
 
-        <asset
-            class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
-            onclick="handleSendCommands({ map: '/Game/Maps/RuntimeAudioImporter' })">
-            <div class="carousel relative rounded-t-xl"
-                style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
-                <img src="{% static 'images/RuntimeAudioImporter.png' %}"
-                    style="height: 216px; min-width: 240px; object-fit: cover; object-position: center; margin: 0; padding: 0; border: none;">
-                <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
-                    style="height: 120px;">
-                    <!-- Here, I've set a fixed height of 84px. You can adjust this value as needed. -->
-                    <h4 itemprop="name">Runtime Audio Importer</h4>
-                    <div class="flex items-center mt-2">
-                        <div class="vendor-icon mr-2"></div>Georgy Treshchev
-                    </div>
-                    <div class="rating mt-2" aria-label="Rating">
-                        <span class="icon icon-solid-star"></span>
-                        <span class="rating-average">5.0</span>
-                        <span title="5 ratings">(7)</span>
-                    </div>
+<div class="products flex justify-center items-center flex-wrap">
+
+    <asset
+        class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
+        onclick="handleSendCommands({ map: '/Game/Maps/RuntimeAudioImporter' })">
+        <div class="carousel relative rounded-t-xl"
+            style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
+            <img src="{% static 'images/RuntimeAudioImporter.png' %}"
+                style="height: 216px; min-width: 240px; object-fit: cover; object-position: center; margin: 0; padding: 0; border: none;">
+            <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
+                style="height: 120px;">
+                <!-- Here, I've set a fixed height of 84px. You can adjust this value as needed. -->
+                <h4 itemprop="name">Runtime Audio Importer</h4>
+                <div class="flex items-center mt-2">
+                    <div class="vendor-icon mr-2"></div>Georgy Treshchev
+                </div>
+                <div class="rating mt-2" aria-label="Rating">
+                    <span class="icon icon-solid-star"></span>
+                    <span class="rating-average">5.0</span>
+                    <span title="5 ratings">(7)</span>
                 </div>
             </div>
-        </asset>
+        </div>
+    </asset>
 
-        <asset
-            class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer shadow hover:shadow-xl transition-shadow transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
-            onclick="handleSendCommands({ map: '/Game/Maps/OWLDemo' })">
-            <div class="carousel relative rounded-t-xl"
-                style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
-                <img src="{% static 'images/LiveStreamingToolkit.png' %}"
-                    style="height: 216px; min-width: 240px; object-fit: cover; object-position: top; margin: 0; padding: 0; border: none;">
-                <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
-                    style="height: 120px;">
-                    <h4 itemprop="name">Livestreaming Toolkit</h4>
-                    <div class="flex items-center mt-2">
-                        <div class="vendor-icon mr-2"></div>Off World Live
-                    </div>
-                    <div class="rating mt-2" aria-label="Rating">
-                        <span class="icon icon-solid-star"></span>
-                        <span class="rating-average">5.0</span>
-                        <span title="5 ratings">(7)</span>
-                    </div>
+    <asset
+        class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer shadow hover:shadow-xl transition-shadow transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
+        onclick="handleSendCommands({ map: '/Game/Maps/OWLDemo' })">
+        <div class="carousel relative rounded-t-xl"
+            style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
+            <img src="{% static 'images/LiveStreamingToolkit.png' %}"
+                style="height: 216px; min-width: 240px; object-fit: cover; object-position: top; margin: 0; padding: 0; border: none;">
+            <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
+                style="height: 120px;">
+                <h4 itemprop="name">Livestreaming Toolkit</h4>
+                <div class="flex items-center mt-2">
+                    <div class="vendor-icon mr-2"></div>Off World Live
+                </div>
+                <div class="rating mt-2" aria-label="Rating">
+                    <span class="icon icon-solid-star"></span>
+                    <span class="rating-average">5.0</span>
+                    <span title="5 ratings">(7)</span>
                 </div>
             </div>
-        </asset>
+        </div>
+    </asset>
 
-        <asset
-            class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
-            onclick="handleSendCommands({ map: '/Game/Maps/TimeOfDay' })">
-            <div class="carousel relative rounded-t-xl"
-                style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
-                <img src="{% static 'images/TQueue.png' %}" class="hover:shadow-lg"
-                    style="height: 216px; min-width: 240px; object-fit: cover; object-position: left; margin: 0; padding: 0; border: none;">
-                <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
-                    style="height: 120px;">
-                    <!-- Here, I've set a fixed height of 84px. You can adjust this value as needed. -->
-                    <h4 itemprop="name">TQueue</h4>
-                    <div class="flex items-center mt-2">
-                        <div class="epic-icon mr-2"></div>Epic Games
-                    </div>
-                    <div class="rating mt-2" aria-label="Rating">
-                        <span class="icon icon-solid-star"></span>
-                        <span class="rating-average">5.0</span>
-                        <span title="5 ratings">(7)</span>
-                    </div>
+    <asset
+        class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
+        onclick="handleSendCommands({ map: '/Game/Maps/TimeOfDay' })">
+        <div class="carousel relative rounded-t-xl"
+            style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
+            <img src="{% static 'images/TQueue.png' %}" class="hover:shadow-lg"
+                style="height: 216px; min-width: 240px; object-fit: cover; object-position: left; margin: 0; padding: 0; border: none;">
+            <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
+                style="height: 120px;">
+                <!-- Here, I've set a fixed height of 84px. You can adjust this value as needed. -->
+                <h4 itemprop="name">TQueue</h4>
+                <div class="flex items-center mt-2">
+                    <div class="epic-icon mr-2"></div>Epic Games
+                </div>
+                <div class="rating mt-2" aria-label="Rating">
+                    <span class="icon icon-solid-star"></span>
+                    <span class="rating-average">5.0</span>
+                    <span title="5 ratings">(7)</span>
                 </div>
             </div>
-        </asset>
+        </div>
+    </asset>
 
-        <asset
-            class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
-            onclick="handleSendCommands({ map: '/Game/UltraDynamicSky/Maps/DemoMap' })">
-            <div class="carousel relative rounded-t-xl"
-                style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
-                <img src="{% static 'images/Unreal.Expert_400x400.jpg' %}"
-                    style="height: 216px; min-width: 240px; object-fit: cover; object-position: left; margin: 0; padding: 0; border: none;">
-                <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
-                    style="height: 120px;">
-                    <!-- Here, I've set a fixed height of 84px. You can adjust this value as needed. -->
-                    <h4 itemprop="name">Twitch Plugin</h4>
-                    <div class="flex items-center mt-2">
-                        <div class="vendor-icon mr-2"></div>Every Good Work, Inc.
-                    </div>
-                    <div class="rating mt-2" aria-label="Rating">
-                        <span class="icon icon-solid-star"></span>
-                        <span class="rating-average">5.0</span>
-                        <span title="5 ratings">(7)</span>
-                    </div>
+    <asset
+        class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer hover:shadow-2xl transition-transform transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
+        onclick="handleSendCommands({ map: '/Game/UltraDynamicSky/Maps/DemoMap' })">
+        <div class="carousel relative rounded-t-xl"
+            style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
+            <img src="{% static 'images/Unreal.Expert_400x400.jpg' %}"
+                style="height: 216px; min-width: 240px; object-fit: cover; object-position: left; margin: 0; padding: 0; border: none;">
+            <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
+                style="height: 120px;">
+                <!-- Here, I've set a fixed height of 84px. You can adjust this value as needed. -->
+                <h4 itemprop="name">Twitch Plugin</h4>
+                <div class="flex items-center mt-2">
+                    <div class="vendor-icon mr-2"></div>Every Good Work, Inc.
+                </div>
+                <div class="rating mt-2" aria-label="Rating">
+                    <span class="icon icon-solid-star"></span>
+                    <span class="rating-average">5.0</span>
+                    <span title="5 ratings">(7)</span>
                 </div>
             </div>
-        </asset>
+        </div>
+    </asset>
 
-        <asset
-            class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer shadow hover:shadow-xl transition-shadow transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
-            onclick="handleSendCommands({ map: '/Game/Maps/TimeOfDay' })">
-            <div class="carousel relative rounded-t-xl"
-                style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
-                <img src="{% static 'images/state-tree.jpg' %}"
-                    style="height: 216px; min-width: 240px; object-fit: cover; object-position: left; margin: 0; padding: 0; border: none;">
-                <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
-                    style="height: 120px;">
-                    <!-- Here, I've set a fixed height of 84px. You can adjust this value as needed. -->
-                    <h4 itemprop="name">State Tree</h4>
-                    <div class="flex items-center mt-2">
-                        <div class="epic-icon mr-2"></div>Epic Games
-                    </div>
-                    <div class="rating mt-2" aria-label="Rating">
-                        <span class="icon icon-solid-star"></span>
-                        <span class="rating-average">5.0</span>
-                        <span title="5 ratings">(7)</span>
-                    </div>
+    <asset
+        class="m-2 bg-purple-300 bg-opacity-20 rounded-xl backdrop-blur-md cursor-pointer shadow hover:shadow-xl transition-shadow transform hover:-translate-y-1 hover:-translate-x-1 min-w-[240px]"
+        onclick="handleSendCommands({ map: '/Game/Maps/TimeOfDay' })">
+        <div class="carousel relative rounded-t-xl"
+            style="height: 300px; width: 240px; margin: 0; padding: 0; overflow: hidden;">
+            <img src="{% static 'images/state-tree.jpg' %}"
+                style="height: 216px; min-width: 240px; object-fit: cover; object-position: left; margin: 0; padding: 0; border: none;">
+            <div class="absolute bottom-0 left-0 w-full pt-2 pl-4 bg-gradient-to-t from-black text-white backdrop-blur-md rounded-b-xl flex flex-col"
+                style="height: 120px;">
+                <!-- Here, I've set a fixed height of 84px. You can adjust this value as needed. -->
+                <h4 itemprop="name">State Tree</h4>
+                <div class="flex items-center mt-2">
+                    <div class="epic-icon mr-2"></div>Epic Games
+                </div>
+                <div class="rating mt-2" aria-label="Rating">
+                    <span class="icon icon-solid-star"></span>
+                    <span class="rating-average">5.0</span>
+                    <span title="5 ratings">(7)</span>
                 </div>
             </div>
-        </asset>
-    </div>
-
+        </div>
+    </asset>
+</div>
 {% endblock %}
