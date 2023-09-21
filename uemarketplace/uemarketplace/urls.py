@@ -20,10 +20,13 @@ from django.urls import path
 from core.views import frontpage
 from core.views import htmx_rocks
 from core.views import pixel_streaming
+from core.views import generate_ssh_key
+
 
 urlpatterns = [
     path('', frontpage, name='frontpage'),
     path('admin/', admin.site.urls),
     path('templates/core/partials/htmx_rocks.html', htmx_rocks, name='htmx_rocks'),
     path('templates/core/partials/pixel_streaming.html', pixel_streaming, name='pixel_streaming'),
+    path('generate_key/', generate_ssh_key, name='generate_ssh_key'), 
 ]
