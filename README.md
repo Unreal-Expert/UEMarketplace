@@ -1,2 +1,2 @@
 # UEMarketplace
-Web interface for the Marketplace of Unreal.Expert
+Proof of concept, web interface for showing HTMX/Pixal Streaming integration for Unreal.Expert site.
